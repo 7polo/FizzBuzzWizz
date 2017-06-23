@@ -38,12 +38,17 @@ public class FizzBuzzWhizz {
 
 
     public FizzBuzzWhizz() {
-        stuMap = Tools.createStudentsLine(num); //生成学生集合
+        stuMap = new HashMap<>(); //生成学生集合
         array = RandomTools.creatNum();
         addStrategy();
     }
 
-    //圈复杂度为 5
+    /**
+     * 生成100个学生，并添加不同的策略
+     * 优化：
+     *    以前包含创建学生时的圈复杂度为 6，逻辑判断圈复杂度为 5
+     *    现在包含创建学生时的圈复杂度为 5，逻辑判断圈复杂度为 5
+     */
     private void addStrategy() {
         strategyMap = Tools.bindStrategy(array); //数字与策略绑定
         //倍数策略

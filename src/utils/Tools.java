@@ -1,10 +1,8 @@
 package utils;
 
-import Bean.Student;
 import rules.*;
 import rules.inter.IStrategy;
 
-import java.util.HashMap;
 import java.util.TreeMap;
 
 /**
@@ -12,19 +10,9 @@ import java.util.TreeMap;
  */
 public class Tools {
 
-    public static HashMap<Student, IStrategy> createStudentsLine(int num) {
-        HashMap<Student, IStrategy> hashMap = new HashMap<>();
-        IStrategy normalStrategy = new NormalStartegy();  //创建基础的策略
-        Student student = null;
-        for (int i = 0; i < num; i++) {
-            student = new Student(i + 1);
-            hashMap.put(student, normalStrategy);
-        }
-        return hashMap;
-    }
-
     public static TreeMap<Integer, IStrategy> bindStrategy(int[] array) {
         TreeMap<Integer, IStrategy> map = new TreeMap<>();
+        map.put(1, new NormalStartegy()); //最基础的
         map.put(array[0], new FirstStrategy());
         map.put(array[1], new SecondStrategy());
         map.put(array[2], new ThirdStrategy());

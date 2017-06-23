@@ -14,10 +14,10 @@ public class ToolsTest {
     @Test
     public void createStudent() {
         //测试基础策略
-        HashMap<Student, IStrategy> map = Tools.createStudentsLine(100);
+       /* HashMap<Student, IStrategy> map = Tools.createStudentsLine(100);
         for (Map.Entry<Student, IStrategy> entry : map.entrySet()) {
             entry.getKey().speak(entry.getValue());
-        }
+        }*/
     }
 
     @Test
