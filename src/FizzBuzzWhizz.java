@@ -4,7 +4,6 @@ import rules.inter.IStrategy;
 import utils.RandomTools;
 import utils.Tools;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
@@ -21,7 +20,6 @@ public class FizzBuzzWhizz {
 
         System.out.println("三个特殊数字：" + array[0] + ", " + array[1] + ", " + array[2]);
 
-
         //打印
         HashMap<Student, IStrategy> map = fizzBuzzWhizz.getStuMap();
         for (Map.Entry<Student, IStrategy> entry : map.entrySet()) {
@@ -33,7 +31,7 @@ public class FizzBuzzWhizz {
     private HashMap<Student, IStrategy> stuMap = null;
     private TreeMap<Integer, IStrategy> strategyMap = null;  //用于编号绑定策略,强调顺序性
 
-    private int num = 100;  //学生个数 100
+    private int maxSize = 100;  //学生个数 100
     private int[] array; //三个特殊数字
 
 
@@ -46,8 +44,8 @@ public class FizzBuzzWhizz {
     /**
      * 生成100个学生，并添加不同的策略
      * 优化：
-     *    以前包含创建学生时的圈复杂度为 6，逻辑判断圈复杂度为 5
-     *    现在包含创建学生时的圈复杂度为 5，逻辑判断圈复杂度为 5
+     * 以前包含创建学生时的圈复杂度为 6，逻辑判断圈复杂度为 5
+     * 现在包含创建学生时的圈复杂度为 5，逻辑判断圈复杂度为 5
      */
     private void addStrategy() {
         strategyMap = Tools.bindStrategy(array); //数字与策略绑定
@@ -55,19 +53,19 @@ public class FizzBuzzWhizz {
         for (Map.Entry<Integer, IStrategy> entry : strategyMap.entrySet()) {
             int index = entry.getKey(); //基数
             IStrategy strategy = entry.getValue();
-            for (int j = 1; index * j <= 100; j++) { //按倍率添加
+            for (int j = 1; index * j <= maxSize; j++) { //按倍率添加
                 stuMap.put(new Student(index * j), strategy);
             }
         }
 
         // 特殊策略 包含第一个数字的
         IStrategy strategy = new HighestStartegy();  // 最高的策略
-        for (int i = 0; i < 10; i++){
+        for (int i = 0; i < 10; i++) {
             //array[0]0 - array[0]9 如 40 - 49
-            stuMap.put(new Student(array[0]*10+i), strategy);
+            stuMap.put(new Student(array[0] * 10 + i), strategy);
 
             //0array[0] - 9array[0] 如： 04， 14， 24..94
-            stuMap.put(new Student(i*10+array[0]), strategy);
+            stuMap.put(new Student(i * 10 + array[0]), strategy);
         }
     }
 
