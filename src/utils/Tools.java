@@ -5,6 +5,7 @@ import rules.NormalStartegy;
 import rules.inter.IStrategy;
 
 import java.util.HashMap;
+import java.util.Random;
 
 /**
  * Created by apologizebao on 2017/6/23.
