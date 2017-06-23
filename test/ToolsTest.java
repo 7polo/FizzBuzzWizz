@@ -19,4 +19,9 @@ public class ToolsTest {
             entry.getKey().speak(entry.getValue());
         }
     }
+
+    @Test
+    public void bindStrategyTest(){
+        Tools.bindStrategy(new int[]{3,5,7});
+    }
 }
