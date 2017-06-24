@@ -1,10 +1,9 @@
-package utils;
-
 import java.util.Random;
 
 /**
  * Created by apologizebao on 2017/6/23.
  */
+
 public class RandomTools {
 
     private static final int num = 3;
@@ -13,7 +12,7 @@ public class RandomTools {
     /**
      * 生成三个不相同的随机数
      *
-     * @return 三个int型数
+     * @return 三个Integer型数
      */
     public static int[] creatNum() {
         int[] array = new int[3];

@@ -1,7 +1,7 @@
 import Bean.Student;
+import Exceptions.NumberInvalidException;
 import org.junit.Test;
 import rules.inter.IStrategy;
-import utils.RandomTools;
 import utils.Tools;
 
 import java.util.HashMap;
@@ -13,9 +13,9 @@ import java.util.Map;
 public class ToolsTest {
 
     @Test
-    public void createStudent() {
+    public void createStudent() throws NumberInvalidException {
         //测试基础策略
-        HashMap<Student, IStrategy> map = new FizzBuzzWhizz().getStuMap();
+        HashMap<Student, IStrategy> map = new FizzBuzzWhizz(2,3,4).getStuMap();
         for (Map.Entry<Student, IStrategy> entry : map.entrySet()) {
             entry.getKey().speak(entry.getValue());
         }
@@ -23,6 +23,8 @@ public class ToolsTest {
 
     @Test
     public void bindStrategyTest() {
-        Tools.bindStrategy(RandomTools.creatNum());
+        int array[] = RandomTools.creatNum();
+        Tools.bindStrategy(array);
+        System.out.println(-9.0/9);
     }
 }

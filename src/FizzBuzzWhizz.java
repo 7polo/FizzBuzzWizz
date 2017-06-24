@@ -1,11 +1,12 @@
 import Bean.Student;
+import Exceptions.NumberInvalidException;
 import rules.HighestStartegy;
 import rules.inter.IStrategy;
-import utils.RandomTools;
 import utils.Tools;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.TreeMap;
 
 /**
@@ -15,15 +16,17 @@ import java.util.TreeMap;
 public class FizzBuzzWhizz {
 
     public static void main(String[] agrs) {
-        FizzBuzzWhizz fizzBuzzWhizz = new FizzBuzzWhizz();
-        int[] array = fizzBuzzWhizz.array;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("依次输入三个不相同的个位数:");
+        int first = scanner.nextInt();
+        int second = scanner.nextInt();
+        int third = scanner.nextInt();
+        try {
+            FizzBuzzWhizz fizzBuzzWhizz = new FizzBuzzWhizz(first, second, third);
+            fizzBuzzWhizz.print();
 
-        System.out.println("三个特殊数字：" + array[0] + ", " + array[1] + ", " + array[2]);
-
-        //打印
-        HashMap<Student, IStrategy> map = fizzBuzzWhizz.getStuMap();
-        for (Map.Entry<Student, IStrategy> entry : map.entrySet()) {
-            entry.getKey().speak(entry.getValue());
+        } catch (NumberInvalidException e) {
+            System.out.println("您的输入有误，请输入三个 个位数：[1,9]");
         }
     }
 
@@ -32,13 +35,27 @@ public class FizzBuzzWhizz {
     private TreeMap<Integer, IStrategy> strategyMap = null;  //用于编号绑定策略,强调顺序性
 
     private int maxSize = 100;  //学生个数 100
-    private int[] array; //三个特殊数字
+    private int[] array = new int[3];
 
 
-    public FizzBuzzWhizz() {
+    public FizzBuzzWhizz(int firstNum, int secondNum, int thirdNum) throws NumberInvalidException {
+
+        array[0] = firstNum;
+        array[1] = secondNum;
+        array[2] = thirdNum;
+        check(array[0], array[1], array[2]);
         stuMap = new HashMap<>(); //生成学生集合
-        array = RandomTools.creatNum();
         addStrategy();
+    }
+
+    //校验数字，非法抛出异常
+    public static double check(int a, int b, int c) throws NumberInvalidException {
+        double num = 0;
+
+        if ((a < 1 || a > 9) || (b < 1 || b > 9) || (c < 1 || c > 9)) {
+            throw new NumberInvalidException();
+        }
+        return num;
     }
 
     /**
@@ -69,6 +86,13 @@ public class FizzBuzzWhizz {
         }
     }
 
+    public void print() {
+        System.out.println("三个特殊数字：" + array[0] + ", " + array[1] + ", " + array[2]);
+        //打印
+        for (Map.Entry<Student, IStrategy> entry : stuMap.entrySet()) {
+            entry.getKey().speak(entry.getValue());
+        }
+    }
 
     public HashMap<Student, IStrategy> getStuMap() {
         return stuMap;
