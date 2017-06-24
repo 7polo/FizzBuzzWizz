@@ -12,6 +12,9 @@
 ```
 javar -jar Question.jar
 ```
++ 按要求输入
+
+![](https://github.com/7polo/FizzBuzzWizz/blob/master/out/%E6%88%AA%E5%9B%BE.PNG)
 ---
 
 ### 思路
